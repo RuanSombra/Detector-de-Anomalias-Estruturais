@@ -1,0 +1,5 @@
+// Arquivo de regras de auditoria BIM
+// Sintaxe: VERIFICAR [TIPO_FILHO] CONTIDO_EM [TIPO_PAI]
+
+// Esta regra vai procurar por paredes que não estão dentro de um andar
+VERIFICAR PAREDE CONTIDO_EM ANDAR

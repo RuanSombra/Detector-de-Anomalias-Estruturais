@@ -1,0 +1,25 @@
+// gramatica.lark (VERSÃO REFINADA)
+
+// A regra start permite múltiplas regras no arquivo de regras
+start: regra+
+
+// Definimos um nome para a nossa regra principal
+regra: verificar_contido_em
+
+verificar_contido_em: "VERIFICAR" tipo_filho "CONTIDO_EM" tipo_pai
+
+// Usamos '-> alias' para dar um nome (apelido) aos nossos tipos.
+// Isso facilita MUITO a extração dos dados no Python.
+tipo_filho: ELEMENTO -> filho
+tipo_pai: ELEMENTO   -> pai
+
+// Tokens para os tipos de elementos
+ELEMENTO: "PAREDE" | "LAJE" | "VIGA" | "PILAR" | "ANDAR" | "EDIFICIO"
+        | "ESPACO" | "PORTA" | "JANELA"
+
+// Ignorar espaços em branco e comentários
+%import common.WS
+%ignore WS
+
+COMMENT: /\/\/.*/ | /#.*/
+%ignore COMMENT
