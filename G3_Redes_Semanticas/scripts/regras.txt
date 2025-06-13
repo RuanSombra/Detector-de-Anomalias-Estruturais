@@ -1,0 +1,65 @@
+// Arquivo de regras de auditoria BIM
+// Sintaxe: VERIFICAR [TIPO_FILHO] CONTIDO_EM [TIPO_PAI]
+
+// ========================================
+// REGRAS DE CONTENÇÃO ESTRUTURAL
+// ========================================
+
+// Elementos estruturais devem estar dentro de andares
+VERIFICAR PAREDE CONTIDO_EM ANDAR
+VERIFICAR VIGA CONTIDO_EM ANDAR
+VERIFICAR PILAR CONTIDO_EM ANDAR
+VERIFICAR LAJE CONTIDO_EM ANDAR
+
+// ========================================
+// REGRAS DE HIERARQUIA DE CONSTRUÇÃO
+// ========================================
+
+// Andares devem estar dentro de edifícios
+VERIFICAR ANDAR CONTIDO_EM EDIFICIO
+
+// Espaços devem estar dentro de andares
+VERIFICAR ESPACO CONTIDO_EM ANDAR
+
+// ========================================
+// REGRAS DE ABERTURAS E COMPONENTES
+// ========================================
+
+// Portas devem estar dentro de paredes ou espaços
+VERIFICAR PORTA CONTIDO_EM PAREDE
+// VERIFICAR PORTA CONTIDO_EM ESPACO  // Regra alternativa
+
+// Janelas devem estar dentro de paredes
+VERIFICAR JANELA CONTIDO_EM PAREDE
+
+// ========================================
+// REGRAS DE CONTENÇÃO ESPACIAL
+// ========================================
+
+// Elementos podem estar dentro de espaços (contenção espacial)
+// VERIFICAR PAREDE CONTIDO_EM ESPACO   // Opcional: paredes delimitam espaços
+// VERIFICAR PILAR CONTIDO_EM ESPACO    // Opcional: pilares dentro de espaços
+
+// ========================================
+// REGRAS DE VALIDAÇÃO ADICIONAL
+// ========================================
+
+// Espaços dentro de edifícios (validação direta)
+// VERIFICAR ESPACO CONTIDO_EM EDIFICIO  // Opcional: pula a hierarquia andar
+
+// ========================================
+// REGRAS COMENTADAS (EXEMPLOS FUTUROS)
+// ========================================
+
+// Estas regras podem ser descomentadas conforme necessário:
+// VERIFICAR LAJE CONTIDO_EM EDIFICIO   // Lajes diretamente no edifício
+// VERIFICAR VIGA CONTIDO_EM EDIFICIO   // Vigas diretamente no edifício
+
+// ========================================
+// NOTAS IMPORTANTES:
+// ========================================
+// 1. Cada regra verifica se elementos do primeiro tipo estão 
+//    contidos em elementos do segundo tipo
+// 2. Regras comentadas com // não são processadas
+// 3. O sistema detecta anomalias quando a relação não existe
+// 4. Ajuste as regras conforme sua modelagem BIM específica
