@@ -1,26 +1,18 @@
-// gramatica.lark (VERSÃO CORRIGIDA)
-
 start: regra+
 
 regra: verificar_contido_em
 
-// CORREÇÃO: Removemos as setas (->) que não fazem sentido aqui
-// As setas são usadas para transformações, não para definir a estrutura da regra
-verificar_contido_em: VERIFICAR tipo_elemento CONTIDO_EM tipo_elemento
+verificar_contido_em: "VERIFICAR" tipo_elemento "CONTIDO_EM" tipo_elemento
 
+// Definição de tipos de elementos (pode ser estendida conforme o IFC)
 tipo_elemento: ELEMENTO
 
-// DECLARAÇÃO DOS TOKENS (PALAVRAS-CHAVE)
-VERIFICAR: "VERIFICAR"
-CONTIDO_EM: "CONTIDO_EM"
-
-// Tokens para os tipos de elementos
 ELEMENTO: "PAREDE" | "LAJE" | "VIGA" | "PILAR" | "ANDAR" | "EDIFICIO"
         | "ESPACO" | "PORTA" | "JANELA"
 
-// Ignorar espaços em branco e comentários
+// Tokens auxiliares
 %import common.WS
 %ignore WS
 
-COMMENT: /\/\/.*/ | /#.*/
+COMMENT: /\/\/.*/ | /#.*/ 
 %ignore COMMENT
